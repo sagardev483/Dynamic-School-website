@@ -25,12 +25,15 @@
           <span></span>
         </div>
         <nav>
-          <ul class="nav-links">
-            <li><a href="#student-life">About Us</a></li>
-            <li><a href="#teachers">Academics</a></li>
-            <li><a href="#activities">Extracurricular Activities</a></li>
-            <li><a href="#facilities">Facilities</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <ul class="nav-links">
+            {% for item in navbar %}
+          
+            
+            <li><a href="#{{ item.url }}">{{ item.name }}</a></li>
+            
+          
+          {% endfor %}
+          
           </ul>
         </nav>
         <div class="header-buttons">
@@ -43,14 +46,19 @@
 
       <section class="hero" id="hero">
         <div class="hero-content">
-            <h1>Welcome to <br>Sunrise English Boarding School</h1>
-            <p>Join us in our mission to empower students with the knowledge and skills they need to succeed.</p>
+            {% if school %}
+            <h1>Welcome to <br>{{ school.name }}</h1>
+            <p>{{ school.motto }}</p>
             <div class="hero-buttons">
                 <button class="btn"><a href="https://docs.google.com/forms/d/e/1FAIpQLSeLITTOKt00WFNIqSPSlaINj02hin9RXBPVww52tJUVQFw9kQ/viewform?usp=header"
                     target="_blank">
                      Admission Form</a></button>
                 <button class="btn" id="notice-btn">Notice</button>
             </div>
+            {% else %}
+                <p> <h1> No School data Available  </h1> </p> 
+                {{ school.name }}
+            {% endif %}
         </div>
     </section>
     
@@ -157,12 +165,12 @@
         </div>
     </section>
 
-    <section id="teachers" class="teachers">
-        <div class="teachers-header">
+    <section id="academics" class="academics">
+        <div class="academics-header">
             <h2>Meet Our Teachers</h2>
             <p>Our teachers are passionate educators dedicated to student success.</p>
         </div>
-        <div class="teachers-grid">
+        <div class="academics-grid">
             <div class="teacher-card">
                 <img src="{% static 'notice/pics/pp.jpg' %}" alt="Alice Johnson">
                 <h3>Alice Johnson</h3>
@@ -214,14 +222,14 @@
         </div>
     </section>
 
-    <section id="student-life" class="student-life">
-        <div class="student-life-header">
+    <section id="about-us" class="about-us">
+        <div class="about-us-header">
             <h2>Discover Student Life at Sunrise</h2>
             <p>
                 At Sunrise English Boarding School, student life is vibrant and full of opportunities. Our students engage in a variety of activities that foster personal growth, creativity, and a sense of community. From participating in clubs and sports to enjoying social events, every day is an adventure.
             </p>
         </div>
-        <div class="student-life-grid">
+        <div class="about-us-grid">
             <img src="{% static 'notice/pics/ok 3.jpg' %}" alt="Students collaborating">
             <img src="{% static 'notice/pics/ok 7.jpg' %}" alt="Students playing soccer">
             <img src="{% static 'notice/pics/ok 8.jpg' %}" alt="Students in science lab">

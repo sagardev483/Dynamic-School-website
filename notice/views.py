@@ -1,15 +1,10 @@
 from django.conf import settings
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Notice
+from .models import Notice, Nav, School
 
 
 # Create your views here.
-def home(request):
-    return render(request, "notice/main.html")
-
-
-from django.conf import settings
 
 
 def notice_api(request):
@@ -22,3 +17,9 @@ def notice_api(request):
             )
 
     return JsonResponse({"notices": notices})
+
+
+def home(request):
+    navbar = Nav.objects.all()
+    school = School.objects.first()
+    return render(request, "notice/main.html", {"navbar": navbar, "school": school})
