@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Notice, Nav, School
-
+from .models import Notice, Nav, School, Teacher, Gallery
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -19,7 +19,13 @@ def notice_api(request):
     return JsonResponse({"notices": notices})
 
 
-def home(request):
-    navbar = Nav.objects.all()
-    school = School.objects.first()
-    return render(request, "notice/main.html", {"navbar": navbar, "school": school})
+class HomeView(TemplateView):
+    template_name = "notice/main.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["navbar"] = Nav.objects.all()
+        context["school"] = School.objects.first()
+        context["teacher"] = Teacher.objects.all()
+        context["gallery"] = Gallery.objects.all()
+        return context

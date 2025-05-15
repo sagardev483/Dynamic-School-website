@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from . import views
+from .views import HomeView, notice_api
+
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("api/notices/", views.notice_api, name="notice-api"),
+    path("", HomeView.as_view(), name="home"),
+    path("api/notices/", notice_api, name="notice-api"),
 ]
 
 

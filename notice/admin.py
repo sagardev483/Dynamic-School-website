@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Notice, Nav, School
+from .models import Notice, Nav, School, Teacher, Gallery
 import nepali_datetime
 
 # Register your models here.\
@@ -18,3 +18,5 @@ class SchoolAdmin(admin.ModelAdmin):
 admin.site.register(Notice)
 admin.site.register(Nav, NavbarAdmin)
 admin.site.register(School, SchoolAdmin)
+admin.site.register(Teacher)
+admin.site.register(Gallery)

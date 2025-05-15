@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{% static 'notice/pics/logo.png' %}" type="image/png" style="border-radius: 50%;">
-    <title>Sunrise English Boarding School</title>
+    <title>{{ school.name }}</title>
     <link rel="stylesheet" href="{% static 'notice/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'notice/css/responsive.css' %}">
     
@@ -81,11 +81,7 @@
                 <div class="mission-content-inner">
                     <h2>Our Mission and Values</h2>
                     <p>
-                        At Sunrise English Boarding School, we are dedicated to empowering students with the knowledge and skills they need to succeed in the future.
-                        Our mission is to provide a comprehensive educational experience that fosters academic excellence and personal growth.
-                        We believe in a supportive learning environment that encourages creativity and innovation.
-                        Our core values include a commitment to holistic development, ensuring that every student is nurtured not just academically,
-                        but also socially and emotionally. Join us in our journey to inspire young minds and prepare them for a bright future.
+                       {{ school.description }}
                     </p>
                 </div>
                 <img src="{% static 'notice/pics/ok (1).jpg' %}" alt="Students working together in a classroom">
@@ -97,12 +93,9 @@
     <section id="activities" class="activities">
         <div class="activities-container">
             <div class="activities-header">
-                <h2>Explore Our Exciting Extracurricular Activities</h2>
+                <h2>{{ school.heading_activities }}</h2>
                 <p>
-                    At Sunrise English Boarding School, we offer a diverse range of extracurricular activities 
-                    that complement our academic programs. From sports and arts to various clubs, our activities 
-                    are designed to foster personal growth, teamwork, and creativity. Join us to discover new 
-                    passions and develop essential life skills.
+                    {{ school.extra_activities}}
                 </p>
             </div>
             <div class="activities-cards">
@@ -230,13 +223,9 @@
             </p>
         </div>
         <div class="about-us-grid">
-            <img src="{% static 'notice/pics/ok 3.jpg' %}" alt="Students collaborating">
-            <img src="{% static 'notice/pics/ok 7.jpg' %}" alt="Students playing soccer">
-            <img src="{% static 'notice/pics/ok 8.jpg' %}" alt="Students in science lab">
-            <img src="{% static 'notice/pics/ok 10.jpg' %} " alt="Student reading in sunlight">
-            <img src="{% static 'notice/pics/ok 4.jpg' %}" alt="Students in library">
-            <img src="{% static 'notice/pics/ok 9.jpg' %}" alt="Students performing on stage">
-            <img src="{% static 'notice/pics/fir.jpg' %}" alt="Students performing on stage">
+            {% for img in gallery %}
+            <img src="{{ img.image.url }}" alt="Gallery pics" width='150' height="250">
+            {% endfor %}
         </div>
     </section>
 
@@ -246,9 +235,9 @@
           <div class="footer-section explore">
             <h3>Explore</h3>
             <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#academics">Academics</a></li>
-              <li><a href="#activities">Extracurricular Activities</a></li>
+              <li><a href="#{{ navbar.0.url }}">{{ navbar.0.name }}</a></li>
+              <li><a href="#{{ navbar.1.url }}">{{ navbar.1.name }}</a></li>
+              <li><a href="#{{ navbar.2.url }}">{{ navbar.2.name }}</a></li>
             </ul>
           </div>
       
@@ -256,8 +245,8 @@
           <div class="footer-section campus">
             <h3>Campus</h3>
             <ul>
-              <li><a href="#facilities">Facilities</a></li>
-              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="#{{ navbar.3.url }}">{{ navbar.3.name }}</a></li>
+              <li><a href="#{{ navbar.4.url }}">{{ navbar.4.name }}</a></li>
             </ul>
           </div>
       
